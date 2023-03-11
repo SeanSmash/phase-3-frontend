@@ -1,33 +1,21 @@
 import React from "react";
+import Exercise from "./Exercise";
 
 function ExerciseList (exercises){
 
-    //console.log(exercises.exercises[0])
-    const exercise = exercises[0]
+    //console.log(exercises.exercises)
     //console.log(Object.keys(exercises.exercises))
-
-    function metricCheck (exercise) {
-        let metric
-        if (exercise.for_reps){
-            metric = "reps"
-        } else if (exercise.for_time){
-            metric = "mins"
-        } else {
-            metric = "lbs"
-        }
-        return metric
-    }
 
 
     return (
         <div className="exercise_list">
             <ul>
-               {exercises.exercises.map((exercise) => (
-                <li>
-                    <span>{exercise.exercise}</span>
-                    <span> {metricCheck(exercise)}</span>
-                </li>
-                ))}
+              {exercises.exercises.map((exercise) => (
+                <Exercise
+                    key={exercise.id}
+                    exercise={exercise}
+                />
+              ))}
             </ul>
         </div>
     )
@@ -36,10 +24,11 @@ function ExerciseList (exercises){
 
 export default ExerciseList;
 
-{/* <Message
-key={message.id}
-message={message}
-currentUser={currentUser}
-onMessageDelete={onMessageDelete}
-onUpdateMessage={onUpdateMessage}
-/> */}
+// {messages.map((message) => (
+//     <Message
+//       key={message.id}
+//       message={message}
+//       currentUser={currentUser}
+//       onMessageDelete={onMessageDelete}
+//       onUpdateMessage={onUpdateMessage}
+//     />
