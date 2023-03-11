@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useEffect, useState } from "react";
+import ExerciseList from "./ExerciseList";
 
 function App() {
+  const [exercises, setExercises] = useState([]);
+  //const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    fetch("http://localhost:9292/exercises")
+      .then((r) => r.json())
+      .then((exercises) => setExercises(exercises));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Phase 3 Frontend
-        </a>
+    <main>
+      <header>
+        <h1>Personal Record Tracker</h1>
+        <p>Login</p>
       </header>
-    </div>
+      <div className="App">
+        <p>Test site </p>
+      </div>
+      <ExerciseList exercises={exercises}/>
+    </main>
   );
 }
 
