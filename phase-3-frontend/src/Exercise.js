@@ -15,10 +15,7 @@ function Exercise (exercise){
     }
 
     return(
-        <li>
-            <span>{exercise.exercise.exercise}</span>
-            <span> {metricCheck(exercise.exercise)}</span>
-        </li>
+        <option value="">{exercise.exercise.exercise}</option>
     )
 }
 

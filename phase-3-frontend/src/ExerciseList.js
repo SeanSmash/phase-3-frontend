@@ -8,15 +8,17 @@ function ExerciseList (exercises){
 
 
     return (
-        <div className="exercise_list">
-            <ul>
-              {exercises.exercises.map((exercise) => (
-                <Exercise
-                    key={exercise.id}
-                    exercise={exercise}
-                />
-              ))}
-            </ul>
+        <div className="exercise-list">
+            <label for="exercise-select"></label>
+                <select id="exercise-select">
+                    <option value="">--Add an Exercise Record--</option>
+                    {exercises.exercises.map((exercise) => (
+                        <Exercise
+                            key={exercise.id}
+                            exercise={exercise}
+                        />
+                    ))}
+                </select>
         </div>
     )
 
@@ -24,11 +26,18 @@ function ExerciseList (exercises){
 
 export default ExerciseList;
 
-// {messages.map((message) => (
-//     <Message
-//       key={message.id}
-//       message={message}
-//       currentUser={currentUser}
-//       onMessageDelete={onMessageDelete}
-//       onUpdateMessage={onUpdateMessage}
-//     />
+//<label for="pet-select">Choose a pet:</label>
+
+{/* <select id="pet-select">
+    <option value="">--Please choose an option--</option>
+    <option value="dog">Dog</option>
+    <option value="cat">Cat</option>
+    <option value="hamster">Hamster</option>
+    <option value="parrot">Parrot</option>
+    <option value="spider">Spider</option>
+    <option value="goldfish">Goldfish</option>
+</select> */}
+
+{/* <ul>
+              
+            </ul> */}
