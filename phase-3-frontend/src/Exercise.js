@@ -15,7 +15,7 @@ function Exercise (exercise){
     }
 
     return(
-        <option value="">{exercise.exercise.exercise}</option>
+        <option value={exercise.exercise.exercise}>{exercise.exercise.exercise}</option>
     )
 }
 

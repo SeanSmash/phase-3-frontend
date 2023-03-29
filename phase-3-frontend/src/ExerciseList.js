@@ -1,43 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Exercise from "./Exercise";
 
-function ExerciseList (exercises){
+function ExerciseList() {
+    const [exercises, setExercises] = useState([]);
+    const [exerciseSelection, setExerciseSelection] = useState([]);
 
-    //console.log(exercises.exercises)
-    //console.log(Object.keys(exercises.exercises))
+    useEffect(() => {
+        fetch("http://localhost:9292/exercises")
+          .then((r) => r.json())
+          .then((exercises) => setExercises(exercises));
+      }, []);
+    
+    function handleChange(e){
+        e.preventDefault();
+        setExerciseSelection(e.target.value)
+    }
 
+    function handleSubmit(e){
+        e.preventDefault();
+        console.log(exerciseSelection)
+    }
 
     return (
-        <div className="exercise-list">
-            <label for="exercise-select"></label>
-                <select id="exercise-select">
+        <form className="exercise-list" onSubmit={handleSubmit}>
+            <label>
+                <select id="exercise-select" value={exerciseSelection} onChange={handleChange}>
                     <option value="">--Add an Exercise Record--</option>
-                    {exercises.exercises.map((exercise) => (
+                    {exercises.map((exercise) => (
                         <Exercise
                             key={exercise.id}
                             exercise={exercise}
                         />
                     ))}
+                    <option value="add exercise">Create New Exercise</option>
                 </select>
-        </div>
+            </label>
+            <input type="submit" value="Add" />
+        </form>
     )
 
 }
 
 export default ExerciseList;
-
-//<label for="pet-select">Choose a pet:</label>
-
-{/* <select id="pet-select">
-    <option value="">--Please choose an option--</option>
-    <option value="dog">Dog</option>
-    <option value="cat">Cat</option>
-    <option value="hamster">Hamster</option>
-    <option value="parrot">Parrot</option>
-    <option value="spider">Spider</option>
-    <option value="goldfish">Goldfish</option>
-</select> */}
-
-{/* <ul>
-              
-            </ul> */}
