@@ -4,6 +4,7 @@ import Popup from 'reactjs-popup';
 
 function Login() {
     const [currentUser, setCurrentUser ] = useContext(CurrentUserContext)
+    const [username, setUsername] = useState("")
     const [users, setUsers] = useState([])
     
     useEffect(() => {
@@ -12,19 +13,39 @@ function Login() {
           .then((resp) => setUsers(resp));
       }, []);
 
-    function isLoggedIn(){
-
+    function handleUsername(e){
+        setUsername(e.target.value)
     }
 
-    function handleUsername(){}
+    const test = users.find(user =>{
+        return username === user.user_name
+    })
 
-    function handleUserSubmit(){}
+    function handleUserSubmit(e){
+        e.preventDefault()
+        users.filter(user => {
+            if (username === user.user_name){
+                setCurrentUser(user)
+            }
+        })
+        console.log(currentUser)
+        console.log(users)
+    }
 
     return ( 
         <p className="login">
-          {currentUser}
-          <Popup trigger=
-          {<button>{isLoggedIn ? "Log out" : "Login"}</button>}
+          {currentUser[0].user_name}
+          {<button>{(currentUser.length === 0) ? "Login" : "Log out"}</button>}
+          
+        </p>
+    )
+
+}
+
+export default Login;
+
+{/* <Popup trigger=
+          {<button>{(currentUser.length === 0) ? "Login" : "Log out"}</button>}
           modal nested>
             {close => (
               <>
@@ -32,16 +53,10 @@ function Login() {
                 handleUserSubmit(e)
                 close()
               }}>
-                <input type="text" value={currentUser} onChange={handleUsername}/>
+                <input type="text" value={username} onChange={handleUsername}/>
                 <input type="submit" value="Login" />
                 <input type="submit" value="Create User" />
               </form>
               </>
             )}
-          </Popup>
-        </p>
-    )
-
-}
-
-export default Login;
+          </Popup> */}

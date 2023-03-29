@@ -1,10 +1,12 @@
 import React from "react";
 
-function Record(){
+function Record(record){
 
-    return(
-        <></>
-    )
+return (
+    <>
+        <p>test</p>
+    </>
+)
 }
 
 export default Record;
