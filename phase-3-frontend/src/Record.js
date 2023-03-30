@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
+import RecordEdit from "./RecordEdit";
 
-function Record({ record, onRecordDelete }){
+function Record({ record, onRecordDelete, onRecordUpdate }){
     const [exercise, setExercise] = useState([])
     const [categories, setCategories] = useState([])
-
-    //console.log(record)
 
     useEffect(() => {
         fetch(`http://localhost:9292/exercises/${record.exercise_id}`)
@@ -42,7 +41,7 @@ function Record({ record, onRecordDelete }){
         }
     }
 
-    function recordDelete(){
+    function handleRecordDelete(){
         fetch(`http://localhost:9292//personal_records/${record.id}`, {
                 method:"DELETE"
             })
@@ -55,8 +54,12 @@ return (
         {metricDisplay()}
         <td>{record.date_created.slice(0,10)}</td>
         {categoryDisplay()}
-        <td><button>edit</button></td>
-        <td><button onClick={recordDelete}>delete</button></td>
+        <RecordEdit 
+            record={record}
+            exercise={exercise}
+            onRecordUpdate={onRecordUpdate}
+        />
+        <td><button onClick={handleRecordDelete}>delete</button></td>
     </tr>
 )
 }

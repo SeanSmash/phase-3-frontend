@@ -3,18 +3,13 @@ import Exercise from "./Exercise";
 
 function ExerciseList() {
     const [exercises, setExercises] = useState([]);
-    const [exerciseSelection, setExerciseSelection] = useState([]);
+    const [exerciseSelection, setExerciseSelection] = useState('');
 
     useEffect(() => {
         fetch("http://localhost:9292/exercises")
           .then((r) => r.json())
           .then((exercises) => setExercises(exercises));
       }, []);
-    
-    function handleChange(e){
-        e.preventDefault();
-        setExerciseSelection(e.target.value)
-    }
 
     function handleSubmit(e){
         e.preventDefault();
@@ -24,7 +19,11 @@ function ExerciseList() {
     return (
         <form className="exercise-list" onSubmit={handleSubmit}>
             <label>
-                <select id="exercise-select" value={exerciseSelection} onChange={handleChange}>
+                <select 
+                    id="exercise-select" 
+                    value={exerciseSelection} 
+                    onChange={e => setExerciseSelection(e.target.value)}
+                >
                     <option value="">--Add an Exercise Record--</option>
                     {exercises.map((exercise) => (
                         <Exercise
@@ -32,7 +31,7 @@ function ExerciseList() {
                             exercise={exercise}
                         />
                     ))}
-                    <option value="add exercise">Create New Exercise</option>
+                    <option value="add exercise">--Create New--</option>
                 </select>
             </label>
             <input type="submit" value="Add" />

@@ -10,22 +10,30 @@ function PersonalRecords() {
         fetch(`http://localhost:9292/personal_records/${currentUser.id}`)
           .then((r) => r.json())
           .then((records) => setUserRecords(records));
-      }, []);
+    }, []);
 
-      function handleDeleteRecord(id){
+    function handleDeleteRecord(id){
         const updatedRecords = userRecords.filter((record) => record.id !== id);
         setUserRecords(updatedRecords)
-      }
-
-    //   function handleDeleteMessage(id) {
-    //     const updatedMessages = messages.filter((message) => message.id !== id);
-    //     setMessages(updatedMessages);
-    //   }
+    }
+    
+    function handleRecordUpdate(updatedRecord){
+        //console.log(updatedRecord)
+        const updatedRecords = userRecords.map(record =>{
+            if (record.id === updatedRecord.id){
+                return updatedRecord
+            } else {
+                return record
+            }
+        })
+        setUserRecords(updatedRecords)
+    }
 
     return ( 
         <RecordList 
             records={userRecords}
-            onRecordDelete={handleDeleteRecord} />
+            onRecordDelete={handleDeleteRecord}
+            onRecordUpdate={handleRecordUpdate} />
     )
 
 }

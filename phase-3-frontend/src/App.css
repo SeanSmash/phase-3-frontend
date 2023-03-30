@@ -19,3 +19,13 @@ th {
 td {
   text-align: left;
 }
+
+.record-edit {
+  border: 2px solid black;
+  background-color: darkgrey;
+  width: 500px;
+  height: 150px;
+  padding: 10px;
+  line-height:20pt;
+  text-align: center;
+}

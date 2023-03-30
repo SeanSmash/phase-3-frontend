@@ -1,7 +1,7 @@
 import React from "react";
 import Record from "./Record";
 
-function RecordList({records, onRecordDelete }){
+function RecordList({records, onRecordDelete, onRecordUpdate }){
 
     return(
         <div className="App">
@@ -20,6 +20,7 @@ function RecordList({records, onRecordDelete }){
                         key={record.id}
                         record={record}
                         onRecordDelete={onRecordDelete}
+                        onRecordUpdate={onRecordUpdate}
                     />
                 ))}
             </tbody>
