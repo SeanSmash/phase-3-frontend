@@ -10,7 +10,9 @@ function Login() {
     useEffect(() => {
         fetch("http://localhost:9292/user_profiles")
           .then((r) => r.json())
-          .then((resp) => setUsers(resp));
+          .then((resp) => {
+            setUsers(resp)
+            setCurrentUser(resp[1])})
       }, []);
 
     function handleUsername(e){
@@ -34,7 +36,7 @@ function Login() {
 
     return ( 
         <p className="login">
-          {currentUser[0].user_name}
+          {currentUser.user_name}
           {<button>{(currentUser.length === 0) ? "Login" : "Log out"}</button>}
           
         </p>

@@ -11,6 +11,7 @@ function RecordList({records}){
                     <th>Exercise</th>
                     <th>Metric</th>
                     <th>Date</th>
+                    <th>Category</th>
                 </tr>
             </thead>
             <tbody>
