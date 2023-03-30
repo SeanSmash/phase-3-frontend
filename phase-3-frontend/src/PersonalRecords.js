@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from 'react';
-import Record from "./Record";
+import RecordList from "./RecordList";
 
-function PersonalRecords(currentUser) {
+function PersonalRecords() {
     const [userRecords, setUserRecords] = useState([])
 
     useEffect(() => {
@@ -11,7 +11,7 @@ function PersonalRecords(currentUser) {
       }, []);
 
     return ( 
-        <Record records={userRecords} />
+        <RecordList records={userRecords} />
     )
 
 }
