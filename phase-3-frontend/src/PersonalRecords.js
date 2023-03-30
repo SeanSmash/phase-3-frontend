@@ -12,8 +12,20 @@ function PersonalRecords() {
           .then((records) => setUserRecords(records));
       }, []);
 
+      function handleDeleteRecord(id){
+        const updatedRecords = userRecords.filter((record) => record.id !== id);
+        setUserRecords(updatedRecords)
+      }
+
+    //   function handleDeleteMessage(id) {
+    //     const updatedMessages = messages.filter((message) => message.id !== id);
+    //     setMessages(updatedMessages);
+    //   }
+
     return ( 
-        <RecordList records={userRecords} />
+        <RecordList 
+            records={userRecords}
+            onRecordDelete={handleDeleteRecord} />
     )
 
 }
