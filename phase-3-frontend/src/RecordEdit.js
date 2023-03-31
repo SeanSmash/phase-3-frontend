@@ -30,9 +30,9 @@ function RecordEdit({ record, exercise, onRecordUpdate }){
             return(
                 <>
                 <label>Metric</label>
-                <input type="text" value={minutes} onChange={handleMinuteChange} placeholder={minutes}/>
+                <input type="number" value={minutes} onChange={handleMinuteChange} placeholder={minutes}/>
                 <label>mins</label>
-                <input type="text" value={seconds} onChange={handleSecondChange} placeholder={seconds}/>
+                <input type="number" value={seconds} onChange={handleSecondChange} placeholder={seconds}/>
                 <label>secs</label>
                 </>
             ) 
@@ -60,12 +60,17 @@ function RecordEdit({ record, exercise, onRecordUpdate }){
     }
     
     function handleRecordEditSubmit(e){
-        let newMetric
+        console.log(minutes)
+        console.log(seconds)
+        const dateConvert = new Date(recordDate)
+        let newMetric = 0
+
         if (exercise.for_time){
-            newMetric = ((minutes * 60) + seconds)
+            newMetric = Number((minutes * 60)) + Number(seconds)
         } else newMetric = metric
 
-        const dateConvert = new Date(recordDate)
+        console.log(newMetric)
+
         e.preventDefault()
         fetch(`http://localhost:9292/personal_records/${record.id}`, {
             method: "PATCH",
