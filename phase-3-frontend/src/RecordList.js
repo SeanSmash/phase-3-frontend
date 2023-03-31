@@ -1,10 +1,10 @@
 import React from "react";
 import Record from "./Record";
 
-function RecordList({records, onRecordDelete, onRecordUpdate }){
+function RecordList({records, onRecordDelete, onRecordUpdate, exerciseSearchTerm, categorySearchTerm }){
 
     return(
-        <div className="App">
+        <div>
         <table>
             <thead>
                 <tr>
@@ -21,6 +21,8 @@ function RecordList({records, onRecordDelete, onRecordUpdate }){
                         record={record}
                         onRecordDelete={onRecordDelete}
                         onRecordUpdate={onRecordUpdate}
+                        exerciseSearchTerm={exerciseSearchTerm}
+                        categorySearchTerm={categorySearchTerm}
                     />
                 ))}
             </tbody>

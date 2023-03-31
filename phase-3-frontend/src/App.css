@@ -1,9 +1,9 @@
-.App {
-  text-align: left;
-}
-
 .title {
   text-align: center;
+}
+
+.login span {
+  padding: 10px;
 }
 
 table {
@@ -14,6 +14,7 @@ table {
   
 th {
   border-bottom: 1px solid black;
+  text-align: left;
 }
   
 td {
@@ -28,4 +29,15 @@ td {
   padding: 10px;
   line-height:20pt;
   text-align: center;
+}
+
+.filter-form {
+  width: 780px;
+  padding: 10px;
+  background-color: lightgray;
+}
+
+.filter-form label {
+  padding-right: 10px;
+  padding-left: 10px;
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RecordEdit from "./RecordEdit";
 
-function Record({ record, onRecordDelete, onRecordUpdate }){
+function Record({ record, onRecordDelete, onRecordUpdate, exerciseSearchTerm, categorySearchTerm }){
     const [exercise, setExercise] = useState([])
     const [categories, setCategories] = useState([])
 
@@ -48,19 +48,52 @@ function Record({ record, onRecordDelete, onRecordUpdate }){
        onRecordDelete(record.id)
     }
 
+    function filterCheck(){
+        const categoryArray = categories.map(category => {
+            return category.category
+        })
+
+        if (exerciseSearchTerm === ""){
+            if (categorySearchTerm === ""){
+                return table()
+            } else if (categoryArray.join().toLowerCase().includes(categorySearchTerm)){
+                return table()
+            }
+        } else if (exercise.exercise.toLowerCase().includes(exerciseSearchTerm)){
+            return table()
+        }
+    }
+
+    function categoryDisplay(){
+        const categoryArray = categories.map(category => {
+            return category.category
+        })
+        return (
+            <td>{categoryArray.join(", ")}</td>
+        )
+    }
+
+    function table(){
+        return(
+            <tr key={record.id}>
+                <td>{exercise.exercise}</td>
+                {metricDisplay()}
+                <td>{record.date_created.slice(0,10)}</td>
+                {categoryDisplay()}
+                <RecordEdit 
+                    record={record}
+                    exercise={exercise}
+                    onRecordUpdate={onRecordUpdate}
+                />
+                <td><button onClick={handleRecordDelete}>delete</button></td>
+            </tr>
+        )
+    }
+
 return (
-    <tr key={record.id}>
-        <td>{exercise.exercise}</td>
-        {metricDisplay()}
-        <td>{record.date_created.slice(0,10)}</td>
-        {categoryDisplay()}
-        <RecordEdit 
-            record={record}
-            exercise={exercise}
-            onRecordUpdate={onRecordUpdate}
-        />
-        <td><button onClick={handleRecordDelete}>delete</button></td>
-    </tr>
+    <>
+    {filterCheck()}
+    </>
 )
 }
 

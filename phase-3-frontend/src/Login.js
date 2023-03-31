@@ -37,8 +37,9 @@ function Login() {
     return ( 
         <p className="login">
           {currentUser.user_name}
-          {<button>{(currentUser.length === 0) ? "Login" : "Log out"}</button>}
-          
+          <span>
+            {<button>{(currentUser.length === 0) ? "Login" : "Log out"}</button>}
+          </span>
         </p>
     )
 

@@ -60,16 +60,12 @@ function RecordEdit({ record, exercise, onRecordUpdate }){
     }
     
     function handleRecordEditSubmit(e){
-        console.log(minutes)
-        console.log(seconds)
         const dateConvert = new Date(recordDate)
         let newMetric = 0
 
         if (exercise.for_time){
             newMetric = Number((minutes * 60)) + Number(seconds)
         } else newMetric = metric
-
-        console.log(newMetric)
 
         e.preventDefault()
         fetch(`http://localhost:9292/personal_records/${record.id}`, {
@@ -111,27 +107,3 @@ function RecordEdit({ record, exercise, onRecordUpdate }){
 }
 
 export default RecordEdit;
-
-//{user_profile_id: 1, exercise_id: 1, metric: 275, date_created: "20230228"},
-
-// function categoriesButtons(){
-//     return(
-//         categories.map(category =>{
-//             return(
-//                 <button key={category.id}>{category.category}</button>
-//             )
-//         })
-//     )
-// }
-
-// function handleCategoryDisplay(){
-//     const categoryArray = categories.map(category => {
-//         return category.category
-//     })
-//     return (
-//         <>
-//         <input type="text" value={recordCategory} onChange={handleRecordCategoryChange} placeholder="--add new category--"/><br></br>
-//         {categoriesButtons()}
-//         </>
-//     )
-// }
