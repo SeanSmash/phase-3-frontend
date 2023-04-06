@@ -7,8 +7,6 @@ function RecordEdit({ record, exercise, onRecordUpdate }){
     const [minutes, setMinutes] = useState(Math.floor(record.metric / 60))
     const [seconds, setSeconds] = useState(record.metric % 60)
 
-    const [metricDisplay, setMetricDisplay] = useState('')
-
     function handleMetricDisplay(){
         if (exercise.for_weight){
             return(
@@ -96,7 +94,7 @@ function RecordEdit({ record, exercise, onRecordUpdate }){
                 <legend>{exercise.exercise}</legend>
                 {handleMetricDisplay()}<br></br>
                 <label>Date</label>
-                <input type="text" value={recordDate} onChange={handleRecordDateChange} placeholder={record.date_created.slice(0,10)}/><br></br>
+                <input type="date" value={recordDate} onChange={handleRecordDateChange} placeholder={record.date_created.slice(0,10)}/><br></br>
                 <input type="submit" value="Update" />
               </form>
               </>

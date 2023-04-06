@@ -46,20 +46,3 @@ function Login() {
 }
 
 export default Login;
-
-{/* <Popup trigger=
-          {<button>{(currentUser.length === 0) ? "Login" : "Log out"}</button>}
-          modal nested>
-            {close => (
-              <>
-              <form onSubmit={(e) => {
-                handleUserSubmit(e)
-                close()
-              }}>
-                <input type="text" value={username} onChange={handleUsername}/>
-                <input type="submit" value="Login" />
-                <input type="submit" value="Create User" />
-              </form>
-              </>
-            )}
-          </Popup> */}

@@ -1,7 +1,6 @@
 import './App.css';
 import React, { useContext } from "react";
 import Login from "./Login";
-import ExerciseList from "./ExerciseList";
 import PersonalRecords from "./PersonalRecords";
 import { CurrentUserContext } from './UserInfo';
 
@@ -14,11 +13,7 @@ function App() {
   function isLoggedIn(){
     if (currentUser.length !== 0) {
       return (
-        <>
-          <ExerciseList />
-          <h2>Personal Records</h2>
-          <PersonalRecords />
-        </>
+        <PersonalRecords />
       )
     } 
   }

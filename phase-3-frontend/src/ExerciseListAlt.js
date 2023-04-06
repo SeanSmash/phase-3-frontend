@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Exercise from "./Exercise";
-import RecordAdd from "./RecordAdd";
 
-function ExerciseList() {
+function ExerciseListAlt() {
     const [exercises, setExercises] = useState([]);
     const [exerciseSelection, setExerciseSelection] = useState('');
 
@@ -41,4 +40,4 @@ function ExerciseList() {
 
 }
 
-export default ExerciseList;
+export default ExerciseListAlt;

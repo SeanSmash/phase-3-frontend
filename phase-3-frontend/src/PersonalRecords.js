@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { CurrentUserContext } from './UserInfo';
 import RecordList from "./RecordList";
 import Filter from './Filter';
+import RecordAdd from './RecordAdd';
 
 function PersonalRecords() {
     const [userRecords, setUserRecords] = useState([])
@@ -39,8 +40,16 @@ function PersonalRecords() {
         setCategorySearchTerm(categorySearchInput)
     }
 
+    function handleNewRecordAdd(newRecord){
+        setUserRecords([newRecord, ...userRecords])
+    }
+
     return ( 
         <>
+        <span className="subtitle">Personal Records</span>
+        <RecordAdd 
+            onNewRecordAdd={handleNewRecordAdd} 
+            currentUser={currentUser} />
         <Filter 
             onExerciseFilter={handleExerciseFilter}
             onCategoryFilter={handleCategoryFilter} />

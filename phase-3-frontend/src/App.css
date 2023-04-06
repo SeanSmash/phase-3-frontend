@@ -6,6 +6,12 @@
   padding: 10px;
 }
 
+.subtitle {
+  font-size: 16pt;
+  font-weight: bold;
+  padding-right: 10px;
+}
+
 table {
   border: 2px solid forestgreen;
   width: 800px;
@@ -31,13 +37,31 @@ td {
   text-align: center;
 }
 
+.record-add {
+  border: 2px solid black;
+  background-color: darkgrey;
+  width: 500px;
+  height: 300px;
+  padding: 10px;
+  line-height:20pt;
+  text-align: center;
+}
+
 .filter-form {
   width: 780px;
   padding: 10px;
   background-color: lightgray;
+  margin-top: 10px;
 }
 
 .filter-form label {
   padding-right: 10px;
   padding-left: 10px;
+}
+
+.category-add {
+  border: 1px solid black;
+  background-color: gray;
+  padding: 1px;
+  margin: 2px;
 }
