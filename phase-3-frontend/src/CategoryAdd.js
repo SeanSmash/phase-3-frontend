@@ -2,7 +2,7 @@ import React from 'react';
 
 function CategoryAdd({ categories, categoriesToAdd, handleCategoriesToAdd }){
     const categoriesToAddUnique = [...new Set(categoriesToAdd)]
-    
+
     return(
         <>
         <select onChange={handleCategoriesToAdd}>

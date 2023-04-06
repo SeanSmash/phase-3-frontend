@@ -3,6 +3,7 @@ import { CurrentUserContext } from './UserInfo';
 import RecordList from "./RecordList";
 import Filter from './Filter';
 import RecordAdd from './RecordAdd';
+import ExerciseAdd from './ExerciseAdd';
 
 function PersonalRecords() {
     const [userRecords, setUserRecords] = useState([])
@@ -44,12 +45,19 @@ function PersonalRecords() {
         setUserRecords([newRecord, ...userRecords])
     }
 
+
+    function handleExerciseAdd(){
+        //need to send new Exercise data to Recod add
+    }
+
     return ( 
         <>
         <span className="subtitle">Personal Records</span>
         <RecordAdd 
             onNewRecordAdd={handleNewRecordAdd} 
             currentUser={currentUser} />
+        <ExerciseAdd
+            onExerciseAdd={handleExerciseAdd} />
         <Filter 
             onExerciseFilter={handleExerciseFilter}
             onCategoryFilter={handleCategoryFilter} />
