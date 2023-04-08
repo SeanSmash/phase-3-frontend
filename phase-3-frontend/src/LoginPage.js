@@ -1,11 +1,20 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 import { CurrentUserContext } from './UserInfo';
 
 function LoginPage({ users, onLogin }){
     const [currentUser, setCurrentUser ] = useContext(CurrentUserContext)
+    const [userList, setUserList] = useState([])
     const [username, setUsername] = useState("")
     const navigate = useNavigate()
+
+    useEffect(() => {
+        fetch("http://localhost:9292/user_profiles")
+          .then((r) => r.json())
+          .then((resp) => {
+            setUserList(resp)
+          })
+      }, []);
 
     function handleUsername(e){
         setUsername(e.target.value)
@@ -17,7 +26,7 @@ function LoginPage({ users, onLogin }){
 
     function handleSubmit(e){
         e.preventDefault()
-        const existingUser = users.filter(user =>{
+        const existingUser = userList.filter(user =>{
             return (user.user_name === username)
         })
         if(existingUser.length == 1){

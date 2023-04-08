@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 function EditProfile(){
     const [currentUser, setCurrentUser ] = useContext(CurrentUserContext)
     const navigate = useNavigate()
-    //const [username, setUsername] = useState(`${currentUser.user_name}`)
+    const [username, setUsername] = useState(`${currentUser.user_name}`)
     const [firstName, setFirstName] = useState(`${currentUser.first_name}`)
     const [lastName, setLastName] = useState(`${currentUser.last_name}`)
     const [gender, setGender] = useState(`${currentUser.gender}`)
@@ -20,6 +20,7 @@ function EditProfile(){
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                user_name: username,
                 first_name: firstName,
                 last_name: lastName,
                 gender: gender,
@@ -28,7 +29,6 @@ function EditProfile(){
         })
         .then((r) => r.json())
         .then((updatedProfile) => {
-            console.log(updatedProfile)
             setCurrentUser(updatedProfile)
             navigate("/")
         });
@@ -38,9 +38,9 @@ function EditProfile(){
         <>
         <form className="user-form" id="edit-profile-form" onSubmit={handleSubmit}>
             <legend>Edit Profile</legend>
-            {/* <label>Username</label>
+            <label>Username</label>
             <input type="text" placeholder={currentUser.user_name} onChange={e => setUsername(e.target.value)}/>
-            <br></br> */}
+            <br></br>
             <label>First Name</label>
             <input type="text" placeholder={currentUser.first_name} onChange={e => setFirstName(e.target.value)} />
             <br></br>
@@ -48,7 +48,7 @@ function EditProfile(){
             <input type="text" placeholder={currentUser.last_name} onChange={e => setLastName(e.target.value)} />
             <br></br>
             <label>Gender</label>
-            <select onSelect={e => setGender(e.target.value)}>
+            <select onChange={e => setGender(e.target.value)}>
                 <option value={currentUser.gender}> -- </option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
@@ -57,7 +57,7 @@ function EditProfile(){
             <input type="date" onChange={e => setBirthDate(e.target.value)} />
             <br></br>
         </form>
-        <button id="cancel-btn">Cancel</button>
+        <button id="cancel-btn" onClick={e => navigate("/")}>Cancel</button>
         <input id="user-form-submit" form="edit-profile-form" type="submit" />
         </>
 

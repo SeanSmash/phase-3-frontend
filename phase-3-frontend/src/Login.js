@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { CurrentUserContext } from './UserInfo';
 import { useNavigate } from "react-router-dom"
 import { NavLink } from "react-router-dom";
@@ -14,8 +14,8 @@ function Login({ isLoggedIn, onLogout }) {
             return(
                 <span>
                     {currentUser.user_name}, 
-                    {/* ({currentUser.gender.slice(0,1)}, 
-                    {year-currentUser.birthdate.slice(0,4)})  */}
+                    ({currentUser.gender.slice(0,1)}, 
+                    {year-currentUser.birthdate.slice(0,4)}) 
                     <NavLink className="navlink" to="/edit_profile">Edit Profile</NavLink></span>
             )
         } else {
@@ -35,7 +35,6 @@ function Login({ isLoggedIn, onLogout }) {
 
     return ( 
         <p className="login">
-            {/* {(isLoggedIn) ? `${currentUser.user_name}` : "Please login" } */}
             {profileDisplay()}
             <span>
             <button onClick={handleNewLogin}>{(isLoggedIn) ? "Log out" : "Login" }</button>
