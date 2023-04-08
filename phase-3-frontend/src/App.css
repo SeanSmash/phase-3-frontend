@@ -66,6 +66,11 @@ td {
   left: 80px;
 }
 
+#record-add-form-date {
+  position: absolute;
+  top: 125px;
+}
+
 #minutes-span {
   position: absolute;
   left: 230px;
@@ -122,5 +127,32 @@ td {
 }
 
 #add-exercise-btn {
+  margin-left: 10px;
+}
+
+.user-form {
+  line-height:20pt;
+}
+
+#user-form-submit {
+  position: relative;
+  margin-left: 0px;
+}
+
+.user-form input {
+  margin-left: 10px;
+}
+
+.user-form select {
+  margin-left: 30px;
+}
+
+#cancel-btn {
+  position: relative;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.navlink {
   margin-left: 10px;
 }

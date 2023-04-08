@@ -1,39 +1,44 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { CurrentUserContext } from './UserInfo';
+import { useNavigate } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 
-function Login() {
+
+function Login({ isLoggedIn, onLogout }) {
     const [currentUser, setCurrentUser ] = useContext(CurrentUserContext)
-    const [username, setUsername] = useState("")
-    const [users, setUsers] = useState([])
-    
-    useEffect(() => {
-        fetch("http://localhost:9292/user_profiles")
-          .then((r) => r.json())
-          .then((resp) => {
-            setUsers(resp)
-            setCurrentUser(resp[1])})
-      }, []);
+    const navigate = useNavigate()
+    const year = new Date().getFullYear()
 
-    function handleUsername(e){
-        setUsername(e.target.value)
+    function profileDisplay(){
+        if (isLoggedIn){
+            return(
+                <span>
+                    {currentUser.user_name}, 
+                    {/* ({currentUser.gender.slice(0,1)}, 
+                    {year-currentUser.birthdate.slice(0,4)})  */}
+                    <NavLink className="navlink" to="/edit_profile">Edit Profile</NavLink></span>
+            )
+        } else {
+            return(
+                <span>Please login</span>
+            )
+        }
     }
 
-    function handleUserSubmit(e){
-        e.preventDefault()
-        users.filter(user => {
-            if (username === user.user_name){
-                setCurrentUser(user)
-            }
-        })
-        console.log(currentUser)
-        console.log(users)
+    function handleNewLogin(){
+        if (!isLoggedIn){
+            navigate("/login")
+        } else {
+            onLogout()
+        }
     }
 
     return ( 
         <p className="login">
-            {(currentUser.length === 0) ? "Please login" : `${currentUser.user_name}`}
+            {/* {(isLoggedIn) ? `${currentUser.user_name}` : "Please login" } */}
+            {profileDisplay()}
             <span>
-            <button>{(currentUser.length === 0) ? "Login" : "Log out"}</button>
+            <button onClick={handleNewLogin}>{(isLoggedIn) ? "Log out" : "Login" }</button>
           </span>
         </p>
     )

@@ -63,7 +63,7 @@ function RecordAdd({ exercises, onNewRecordAdd, currentUser }){
                             value={metric} onChange={e => setMetric(e.target.value)}
                         /><span>{(exerciseToAdd[0].for_weight) ? "lbs" : "reps"}</span><br></br>
                         <label>Date</label>
-                        <input type="date" value={date} onChange={e => setDate(e.target.value)}/><br></br>
+                        <input id="record-add-form-date" type="date" value={date} onChange={e => setDate(e.target.value)}/><br></br>
                     </form>
                 )
             } else {
@@ -78,7 +78,7 @@ function RecordAdd({ exercises, onNewRecordAdd, currentUser }){
                             value={seconds} onChange={e => setSeconds(e.target.value)}
                         /><span id="seconds-span">seconds</span><br></br>
                         <label>Date</label>
-                        <input type="date" value={date} onChange={e => setDate(e.target.value)}/><br></br>
+                        <input id="record-add-form-date" type="date" value={date} onChange={e => setDate(e.target.value)}/><br></br>
                     </form>
                 ) 
             }
