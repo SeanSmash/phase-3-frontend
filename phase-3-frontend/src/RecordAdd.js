@@ -1,25 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Exercise from './Exercise';
 import Popup from 'reactjs-popup';
 
-function RecordAdd({ onNewRecordAdd, currentUser }){
+function RecordAdd({ exercises, onNewRecordAdd, currentUser }){
     const dateToday = new Date().toISOString().slice(0,10)
-    const [exercises, setExercises] = useState([])
     const [exerciseSelection, setExerciseSelection] = useState('');
-    const [categories, setCategories] = useState([])
     const [metric, setMetric] = useState('')
     const [date, setDate] = useState(dateToday)
     const [minutes, setMinutes] = useState('')
     const [seconds, setSeconds] = useState('')
-
-    useEffect(() => {
-        fetch("http://localhost:9292/exercises")
-          .then((r) => r.json())
-          .then((exercises) => setExercises(exercises));
-        fetch(`http://localhost:9292/categories`)
-          .then((r) => r.json())
-          .then((resp) => setCategories(resp));
-      }, []);
 
     function clearRecordAddContents(){
         setExerciseSelection('')

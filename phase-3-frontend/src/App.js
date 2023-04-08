@@ -1,23 +1,21 @@
 import './App.css';
 import React, { useContext } from "react";
 import Login from "./Login";
-import PersonalRecords from "./PersonalRecords";
+import PersonalRecords from './PersonalRecords';
 import { CurrentUserContext } from './UserInfo';
-
 
 function App() {
   const [currentUser, setCurrentUser ] = useContext(CurrentUserContext)
-
-  //const [search, setSearch] = useState("");
+ 
 
   function isLoggedIn(){
-    if (currentUser.length !== 0) {
-      return (
+    if (currentUser.length !== 0){
+      return(
         <PersonalRecords />
       )
-    } 
+    }
   }
-
+  
   return (
     <main>
       <header>

@@ -1,26 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Popup from "reactjs-popup";
 import CategoryAdd from "./CategoryAdd";
 
-function ExerciseAdd({ onExerciseAdd }){
-    const [exercises, setExercises] = useState([])
-    const [categories, setCategories] = useState([])
+function ExerciseAdd({ categories, onExerciseAdd }){
     const [categoriesToAdd, setCategoriesToAdd] = useState([])
-    const [metricType, setMetricType] = useState('')
+    const [metricType, setMetricType] = useState('for_reps')
     const [newExercise, setNewExercise] = useState('')
-    
-    useEffect(() => {
-        fetch("http://localhost:9292/exercises")
-            .then((r) => r.json())
-            .then((exercises) => setExercises(exercises));
-        fetch(`http://localhost:9292/categories`)
-            .then((r) => r.json())
-            .then((resp) => setCategories(resp));
-        }, []);
 
     function handleCategoriesToAdd(e){
-        if (e.target.value === "Reset"){
+        if (e.target.value === "reset"){
             setCategoriesToAdd([])
+        } else if (e.target.value === "category"){
+            setCategoriesToAdd([...categoriesToAdd])
         } else {setCategoriesToAdd([...categoriesToAdd, e.target.value])}
     }
 
@@ -32,6 +23,7 @@ function ExerciseAdd({ onExerciseAdd }){
 
     function handleExerciseAddSubmit(e){
         e.preventDefault()
+        let ex
         let metric = []
         if (metricType === "for_reps"){
             metric = ["true", "false", "false"]
@@ -54,8 +46,30 @@ function ExerciseAdd({ onExerciseAdd }){
             }),
         })
         .then((r) => r.json())
-        .then((newEx) => onExerciseAdd(newEx));
-
+        .then((newEx) => {
+            onExerciseAdd(newEx)
+            ex = newEx;
+            categoriesToAdd.map(cat =>{
+                categories.map(category =>{
+                    if (category.category === cat){
+                        fetch("http://localhost:9292/exercise_categories", {
+                            method: "POST",
+                            headers: {
+                            "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                category_id: category.id,
+                                exercise_id: ex.id
+                            }),
+                        })  
+                        .then((r) => r.json())
+                        //.then((newCatEx) => console.log(newCatEx));
+                    }
+                })
+                
+            })
+        })
+             
         clearExerciseAddContents()
     }
 

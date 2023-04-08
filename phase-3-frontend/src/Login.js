@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { CurrentUserContext } from './UserInfo';
-import Popup from 'reactjs-popup';
 
 function Login() {
     const [currentUser, setCurrentUser ] = useContext(CurrentUserContext)
@@ -19,10 +18,6 @@ function Login() {
         setUsername(e.target.value)
     }
 
-    const test = users.find(user =>{
-        return username === user.user_name
-    })
-
     function handleUserSubmit(e){
         e.preventDefault()
         users.filter(user => {
@@ -36,9 +31,9 @@ function Login() {
 
     return ( 
         <p className="login">
-          {currentUser.user_name}
-          <span>
-            {<button>{(currentUser.length === 0) ? "Login" : "Log out"}</button>}
+            {(currentUser.length === 0) ? "Please login" : `${currentUser.user_name}`}
+            <span>
+            <button>{(currentUser.length === 0) ? "Login" : "Log out"}</button>
           </span>
         </p>
     )

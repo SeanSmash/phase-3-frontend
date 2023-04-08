@@ -6,10 +6,11 @@ function CategoryAdd({ categories, categoriesToAdd, handleCategoriesToAdd }){
     return(
         <>
         <select onChange={handleCategoriesToAdd}>
+            <option value="category">category</option>
             {categories.map(cat =>(
                 <option key={cat.id} value={cat.category}>{cat.category}</option>
             ))}
-            <option value="Reset">Reset</option>
+            <option value="reset">reset</option>
         </select><br></br>
         {categoriesToAddUnique.map(cat =>(
             <label className="category-add">{cat}</label>

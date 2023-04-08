@@ -7,6 +7,8 @@ import ExerciseAdd from './ExerciseAdd';
 
 function PersonalRecords() {
     const [userRecords, setUserRecords] = useState([])
+    const [exercises, setExercises] = useState([])
+    const [categories, setCategories] = useState([])
     const [currentUser, setCurrentUser ] = useContext(CurrentUserContext)
     const [exerciseSearchTerm, setExerciseSearchTerm ] = useState('')
     const [categorySearchTerm, setCategorySearchTerm ] = useState('')
@@ -15,6 +17,12 @@ function PersonalRecords() {
         fetch(`http://localhost:9292/personal_records/${currentUser.id}`)
           .then((r) => r.json())
           .then((records) => setUserRecords(records));
+        fetch("http://localhost:9292/exercises")
+          .then((r) => r.json())
+          .then((exercises) => setExercises(exercises));
+        fetch(`http://localhost:9292/categories`)
+          .then((r) => r.json())
+          .then((resp) => setCategories(resp));
     }, []);
 
     function handleDeleteRecord(id){
@@ -45,18 +53,20 @@ function PersonalRecords() {
         setUserRecords([newRecord, ...userRecords])
     }
 
-
-    function handleExerciseAdd(){
-        //need to send new Exercise data to Recod add
+    function handleExerciseAdd(newExercise){
+        setExercises([...exercises, newExercise])
+        alert("New exercise added!")
     }
 
-    return ( 
-        <>
+    return (
+        <> 
         <span className="subtitle">Personal Records</span>
         <RecordAdd 
+            exercises={exercises}
             onNewRecordAdd={handleNewRecordAdd} 
             currentUser={currentUser} />
         <ExerciseAdd
+            categories={categories}
             onExerciseAdd={handleExerciseAdd} />
         <Filter 
             onExerciseFilter={handleExerciseFilter}
