@@ -1,9 +1,7 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
-import { CurrentUserContext } from './UserInfo';
 
-function LoginPage({ users, onLogin }){
-    const [currentUser, setCurrentUser ] = useContext(CurrentUserContext)
+function LoginPage({ onLogin }){
     const [userList, setUserList] = useState([])
     const [username, setUsername] = useState("")
     const navigate = useNavigate()
@@ -15,10 +13,6 @@ function LoginPage({ users, onLogin }){
             setUserList(resp)
           })
       }, []);
-
-    function handleUsername(e){
-        setUsername(e.target.value)
-    }
 
     function createNewUser(){
         navigate("/new_user")
